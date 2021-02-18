@@ -30,23 +30,23 @@ EOF
 
 
     # setup products
-        if [ -f "/home/stor2rrd/stor2rrd/etc/stor2rrd.cfg" ]; then
-            # spoof files to force update, not install
-            mkdir -p /home/stor2rrd/stor2rrd/bin
-            touch /home/stor2rrd/stor2rrd/bin/storage.pl
-            touch /home/stor2rrd/stor2rrd/load.sh
-            ITYPE="update.sh"
-        else
-            ITYPE="install.sh"
-        fi
+    if [ -f "/home/stor2rrd/stor2rrd/etc/stor2rrd.cfg" ]; then
+        # spoof files to force update, not install
+        mkdir -p /home/stor2rrd/stor2rrd/bin
+        touch /home/stor2rrd/stor2rrd/bin/storage.pl
+        touch /home/stor2rrd/stor2rrd/load.sh
+        ITYPE="update.sh"
+    else
+        ITYPE="install.sh"
+    fi
 
-        # change ownership of files, mounted volumes
-        chown -R 1008 /home/stor2rrd
+    # change ownership of files, mounted volumes
+    chown -R 1008 /home/stor2rrd
 
     su - stor2rrd -c "cd /home/stor2rrd/stor2rrd-$STOR_VER/; yes '' | ./$ITYPE"
-        if [ "$ITYPE" = "update.sh" ]; then
-            su - stor2rrd -c "cd /home/stor2rrd/stor2rrd; ./load.sh html"
-        fi
+    if [ "$ITYPE" = "update.sh" ]; then
+        su - stor2rrd -c "cd /home/stor2rrd/stor2rrd; ./load.sh html"
+    fi
     rm -r /home/stor2rrd/stor2rrd-$STOR_VER
 
     # set DOCKER env var
@@ -59,6 +59,10 @@ EOF
     echo "${TIMEZONE}" > /etc/timezone
     chmod 666 /etc/timezone
     ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+
+    if [ $XORMON ] && [ "$XORMON" != "0" ]; then
+        su - stor2rrd -c "echo 'export XORMON=1' >> /home/stor2rrd/stor2rrd/etc/.magic"
+    fi
 
     # copy .htaccess files for ACL
     cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/www
