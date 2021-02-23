@@ -66,7 +66,7 @@ RUN cpanm -l /usr -n PDF::API2
 
 # setup default user
 RUN addgroup -S stor2rrd 
-RUN adduser -S stor2rrd -G stor2rrd -u 1008 -s /bin/bash
+RUN adduser -S stor2rrd -G stor2rrd -s /bin/bash
 RUN echo 'stor2rrd:xorux4you' | chpasswd
 RUN echo '%stor2rrd ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -79,7 +79,7 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 
 # add product installations
 ENV STOR_VER_MAJ "7.07"
-ENV STOR_VER_MIN "-1"
+ENV STOR_VER_MIN "-5"
 
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"
 
@@ -94,7 +94,7 @@ RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd.cron /var/spoo
 # ADD http://downloads.sourceforge.net/project/stor2rrd/stor2rrd/$STOR_SF_DIR/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
 # download tarballs from official website
-ADD https://stor2rrd.com/download/stor2rrd-$STOR_VER.tar /home/stor2rrd/
+ADD https://stor2rrd.com/download-static/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
 # extract tarballs
 WORKDIR /home/stor2rrd
@@ -108,8 +108,6 @@ RUN chmod +x /startup.sh
 #RUN mkdir -p /home/lpar2rrd/lpar2rrd/etc
 VOLUME [ "/home/stor2rrd/stor2rrd/etc" ]
 VOLUME [ "/home/stor2rrd/stor2rrd/data" ]
-
-#RUN chown -R 1008 /home/stor2rrd
 
 ENTRYPOINT [ "/startup.sh" ]
 

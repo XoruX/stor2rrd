@@ -41,7 +41,7 @@ EOF
     fi
 
     # change ownership of files, mounted volumes
-    chown -R 1008 /home/stor2rrd
+    chown -R stor2rrd /home/stor2rrd
 
     su - stor2rrd -c "cd /home/stor2rrd/stor2rrd-$STOR_VER/; yes '' | ./$ITYPE"
     if [ "$ITYPE" = "update.sh" ]; then
