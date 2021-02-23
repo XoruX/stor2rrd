@@ -1,4 +1,4 @@
-# XoruX STOR2RRD Docker
+# XoruX STOR2RRD
 This is dockerized version of single [XoruX](https://www.xorux.com) application - [STOR2RRD](https://www.stor2rrd.com).
 
 It's based on the latest official [Alpine Linux](https://hub.docker.com/_/alpine) with all necessary dependencies installed.
