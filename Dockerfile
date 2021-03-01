@@ -78,8 +78,8 @@ COPY configs/apache2/htpasswd /etc/apache2/conf/
 RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.07"
-ENV STOR_VER_MIN "-5"
+ENV STOR_VER_MAJ "7.08"
+ENV STOR_VER_MIN ""
 
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"
 
