@@ -78,7 +78,7 @@ COPY configs/apache2/htpasswd /etc/apache2/conf/
 RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.08"
+ENV STOR_VER_MAJ "7.09"
 ENV STOR_VER_MIN ""
 
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"
@@ -94,10 +94,10 @@ RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd.cron /var/spoo
 # ADD http://downloads.sourceforge.net/project/stor2rrd/stor2rrd/$STOR_SF_DIR/stor2rrd-$STOR_VER.tar /home/stor2rrd/
 
 # download tarballs from official website
-ADD https://stor2rrd.com/download-static/stor2rrd-$STOR_VER.tar /home/stor2rrd/
+ADD https://stor2rrd.com/download-static/stor2rrd-$STOR_VER.tar /tmp/
 
 # extract tarballs
-WORKDIR /home/stor2rrd
+WORKDIR /tmp
 RUN tar xvf stor2rrd-$STOR_VER.tar
 
 COPY supervisord.conf /etc/
@@ -106,8 +106,7 @@ RUN chmod +x /startup.sh
 
 #RUN mkdir -p /home/lpar2rrd/lpar2rrd/data
 #RUN mkdir -p /home/lpar2rrd/lpar2rrd/etc
-VOLUME [ "/home/stor2rrd/stor2rrd/etc" ]
-VOLUME [ "/home/stor2rrd/stor2rrd/data" ]
+VOLUME [ "/home/stor2rrd" ]
 
 ENTRYPOINT [ "/startup.sh" ]
 

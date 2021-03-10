@@ -24,11 +24,6 @@ EOF
     # RRDp module not found, move it
     mv /usr/share/vendor_perl/RRDp.pm  /usr/share/perl5/vendor_perl/
 
-    # Generate Host keys
-    ssh-keygen -A
-
-
-
     # setup products
     if [ -f "/home/stor2rrd/stor2rrd/etc/stor2rrd.cfg" ]; then
         # spoof files to force update, not install
@@ -37,17 +32,20 @@ EOF
         touch /home/stor2rrd/stor2rrd/load.sh
         ITYPE="update.sh"
     else
+        # Generate Host keys
+        ssh-keygen -A
         ITYPE="install.sh"
     fi
 
     # change ownership of files, mounted volumes
     chown -R stor2rrd /home/stor2rrd
+    chown -R stor2rrd /tmp/stor2rrd-$STOR_VER
 
-    su - stor2rrd -c "cd /home/stor2rrd/stor2rrd-$STOR_VER/; yes '' | ./$ITYPE"
+    su - stor2rrd -c "cd /tmp/stor2rrd-$STOR_VER/; yes '' | ./$ITYPE"
     if [ "$ITYPE" = "update.sh" ]; then
         su - stor2rrd -c "cd /home/stor2rrd/stor2rrd; ./load.sh html"
     fi
-    rm -r /home/stor2rrd/stor2rrd-$STOR_VER
+    rm -r /tmp/stor2rrd-$STOR_VER
 
     # set DOCKER env var
     su - stor2rrd -c "echo 'export DOCKER=1' >> /home/stor2rrd/stor2rrd/etc/.magic"
