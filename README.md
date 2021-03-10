@@ -11,7 +11,7 @@ You can set container timezone via env variable TIMEZONE in docker run command:
 
     docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e TIMEZONE="Europe/Prague" xorux/stor2rrd
 
-If you want to use this conatainer as a source for XorMon, set XORMON env variable:
+If you want to use this container as a XorMon backend, set XORMON env variable:
 
     docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e XORMON=1 xorux/stor2rrd
 
