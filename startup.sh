@@ -24,6 +24,9 @@ EOF
     # RRDp module not found, move it
     mv /usr/share/vendor_perl/RRDp.pm  /usr/share/perl5/vendor_perl/
 
+    # Generate Host keys
+    ssh-keygen -A
+
     # setup products
     if [ -f "/home/stor2rrd/stor2rrd/etc/stor2rrd.cfg" ]; then
         # spoof files to force update, not install
@@ -32,8 +35,6 @@ EOF
         touch /home/stor2rrd/stor2rrd/load.sh
         ITYPE="update.sh"
     else
-        # Generate Host keys
-        ssh-keygen -A
         ITYPE="install.sh"
     fi
 
