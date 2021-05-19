@@ -79,5 +79,10 @@ if [ -f /var/run/rsyslogd.pid ]; then
     rm /var/run/rsyslogd.pid
 fi
 
+# The same for Apache daemon
+if [ -f /var/run/apache2/httpd.pid ]; then
+    rm /var/run/apache2/httpd.pid
+fi
+
 # Start supervisor to start the services
 /usr/bin/supervisord -c /etc/supervisord.conf -l /var/log/supervisor.log -j /var/run/supervisord.pid
