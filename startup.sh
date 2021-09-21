@@ -32,8 +32,10 @@ EOF
         touch /home/stor2rrd/stor2rrd/load.sh
         ITYPE="update.sh"
     else
-        ssh-keygen -A # Generate host keys
         ITYPE="install.sh"
+        # copy .htaccess files for ACL
+        cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/www
+        cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/stor2rrd-cgi
     fi
 
     # change ownership of files, mounted volumes
@@ -61,9 +63,6 @@ EOF
         su - stor2rrd -c "echo 'export XORMON=1' >> /home/stor2rrd/stor2rrd/etc/.magic"
     fi
 
-    # copy .htaccess files for ACL
-    cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/www
-    cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/stor2rrd-cgi
 
     # initialize stor2rrd's crontab
     crontab -u stor2rrd /var/spool/cron/crontabs/stor2rrd

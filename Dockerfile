@@ -39,7 +39,6 @@ RUN apk update && apk add \
     libxml2-utils \
     # snmp-mibs-downloader \
     openssh-client \
-    openssh-server \
     ttf-dejavu \
     graphviz \
     vim \
@@ -84,7 +83,7 @@ ENV STOR_VER_MIN ""
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"
 
 # expose ports for SSH, HTTP, HTTPS
-EXPOSE 22 80 443
+EXPOSE 80
 
 COPY configs/crontab /var/spool/cron/crontabs/stor2rrd
 RUN chmod 640 /var/spool/cron/crontabs/stor2rrd && chown stor2rrd.cron /var/spool/cron/crontabs/stor2rrd
@@ -106,6 +105,7 @@ RUN chmod +x /startup.sh
 
 #RUN mkdir -p /home/lpar2rrd/lpar2rrd/data
 #RUN mkdir -p /home/lpar2rrd/lpar2rrd/etc
+
 VOLUME [ "/home/stor2rrd" ]
 
 ENTRYPOINT [ "/startup.sh" ]

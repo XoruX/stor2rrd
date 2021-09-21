@@ -16,5 +16,3 @@ If you want to use this container as a XorMon backend, set XORMON env variable:
     docker run -d --name STOR2RRD --restart always -v stor2rrd:/home/stor2rrd -e XORMON=1 xorux/stor2rrd
 
 Application UI can be found on http://\<CONTAINER_IP\>, use admin/admin for login.
-
-You can connect via SSH on port 22 (exposed), username **stor2rrd**, password **xorux4you** - please change it ASAP.
