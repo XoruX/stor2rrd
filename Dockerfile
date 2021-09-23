@@ -70,11 +70,15 @@ RUN echo 'stor2rrd:xorux4you' | chpasswd
 RUN echo '%stor2rrd ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # configure Apache
-COPY configs/apache2 /etc/apache2/sites-available
+COPY configs/apache2/stor2rrd.conf /etc/apache2/sites-available/
 COPY configs/apache2/htpasswd /etc/apache2/conf/
+COPY configs/apache2/hardening.conf /etc/apache2/conf.d
 
 # change apache user to stor2rrd
 RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
+
+# disable status module
+RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
 ENV STOR_VER_MAJ "7.21"

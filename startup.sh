@@ -8,7 +8,7 @@ if [ -f /firstrun ]; then
     # Start syslog server to see something
     # /usr/sbin/rsyslogd
 
-    echo "Running for first time.. need to configure..."
+    echo "Running for the first time.. need to configure..."
 
     ln -s /etc/apache2/sites-available/*.conf /etc/apache2/conf.d/
 
@@ -24,23 +24,34 @@ EOF
     # RRDp module not found, move it
     mv /usr/share/vendor_perl/RRDp.pm  /usr/share/perl5/vendor_perl/
 
+    # change ownership of files, mounted volumes
+    chown -R stor2rrd /home/stor2rrd
+    chown -R stor2rrd /tmp/stor2rrd-$STOR_VER
+
     # setup products
     if [ -f "/home/stor2rrd/stor2rrd/etc/stor2rrd.cfg" ]; then
         # spoof files to force update, not install
-        mkdir -p /home/stor2rrd/stor2rrd/bin
-        touch /home/stor2rrd/stor2rrd/bin/storage.pl
-        touch /home/stor2rrd/stor2rrd/load.sh
+       #mkdir -p /home/stor2rrd/stor2rrd/bin
+       #touch /home/stor2rrd/stor2rrd/bin/storage.pl
+       #touch /home/stor2rrd/stor2rrd/load.sh
+        OLD_VER=`tail -1 /home/stor2rrd/stor2rrd/etc/version.txt | sed 's/ .*//'`
         ITYPE="update.sh"
+        if [ -f "/home/stor2rrd/stor2rrd/bin/premium.sh" ]; then
+            echo "Premium version detected, no update will be done"
+        elif [ "$OLD_VER" = "$STOR_VER" ]; then
+            echo "The version is still the same, no update needed"
     else
-        ITYPE="install.sh"
+            su - stor2rrd -c "cd /tmp/stor2rrd-$STOR_VER/; yes '' | ./update.sh"
+            su - stor2rrd -c "cd /home/stor2rrd/stor2rrd; ./load.sh html"
+        fi
+    else
+        su - stor2rrd -c "cd /tmp/stor2rrd-$STOR_VER/; yes '' | ./install.sh"
+
         # copy .htaccess files for ACL
         cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/www
         cp -p /home/stor2rrd/stor2rrd/html/.htaccess /home/stor2rrd/stor2rrd/stor2rrd-cgi
     fi
 
-    # change ownership of files, mounted volumes
-    chown -R stor2rrd /home/stor2rrd
-    chown -R stor2rrd /tmp/stor2rrd-$STOR_VER
 
     su - stor2rrd -c "cd /tmp/stor2rrd-$STOR_VER/; yes '' | ./$ITYPE"
     if [ "$ITYPE" = "update.sh" ]; then
