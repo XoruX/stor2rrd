@@ -66,8 +66,6 @@ RUN cpanm -l /usr -n PDF::API2
 # setup default user
 RUN addgroup -S stor2rrd 
 RUN adduser -S stor2rrd -G stor2rrd -s /bin/bash
-RUN echo 'stor2rrd:xorux4you' | chpasswd
-RUN echo '%stor2rrd ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # configure Apache
 COPY configs/apache2/stor2rrd.conf /etc/apache2/sites-available/
