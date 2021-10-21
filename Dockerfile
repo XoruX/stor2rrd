@@ -54,7 +54,8 @@ RUN apk update && apk add \
     perl-app-cpanminus \
     sqlite \
     perl-dbd-pg \
-    perl-dbd-sqlite
+    perl-dbd-sqlite \
+    diffutils
 
 # perl-font-ttf fron testing repo (needed for PDF reports)
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
@@ -79,7 +80,7 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.21"
+ENV STOR_VER_MAJ "7.30"
 ENV STOR_VER_MIN ""
 
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"

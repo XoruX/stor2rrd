@@ -2,31 +2,31 @@
 ######################################################
 
 # GUI
-03,33 * * * * /home/stor2rrd/stor2rrd/load.sh > /home/stor2rrd/stor2rrd/logs/load.out 2>&1
+03,33 * * * * /home/lpar2rrd/stor2rrd/load.sh > /home/lpar2rrd/stor2rrd/logs/load.out 2>&1
 
 # IBM DS8000 storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_ds8perf.sh > /home/stor2rrd/stor2rrd/load_ds8perf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_ds8perf.sh > /home/lpar2rrd/stor2rrd/load_ds8perf.out 2>&1
 
 # IBM SVC/Storwize/Flash storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_svcperf.sh > /home/stor2rrd/stor2rrd/load_svcperf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_svcperf.sh > /home/lpar2rrd/stor2rrd/load_svcperf.out 2>&1
 
 # DS500/DS4000/DS3000/DCS3700 & NetApp E-series storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_ds5perf.sh > /home/stor2rrd/stor2rrd/load_ds5perf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_ds5perf.sh > /home/lpar2rrd/stor2rrd/load_ds5perf.out 2>&1
 
 # IBM XIV storage agent
-0,10,20,30,40,50 * * * * /home/stor2rrd/stor2rrd/load_xivperf.sh > /home/stor2rrd/stor2rrd/load_xivperf.out 2>&1
+0,10,20,30,40,50 * * * * /home/lpar2rrd/stor2rrd/load_xivperf.sh > /home/lpar2rrd/stor2rrd/load_xivperf.out 2>&1
 
 # Hitachi HUS and AMS 2000 storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_husperf.sh > /home/stor2rrd/stor2rrd/load_husperf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_husperf.sh > /home/lpar2rrd/stor2rrd/load_husperf.out 2>&1
 
 # HPE 3PAR storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_3parperf.sh > /home/stor2rrd/stor2rrd/load_3parperf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_3parperf.sh > /home/lpar2rrd/stor2rrd/load_3parperf.out 2>&1
 
 # NetApp storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_netappperf.sh > /home/stor2rrd/stor2rrd/load_netappperf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_netappperf.sh > /home/lpar2rrd/stor2rrd/load_netappperf.out 2>&1
 
 # Hitachi VSP-G  & HPE XP7 storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vspgperf.sh > /home/stor2rrd/stor2rrd/load_vspgperf.out 2>&1
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/lpar2rrd/stor2rrd/load_vspgperf.sh > /home/lpar2rrd/stor2rrd/load_vspgperf.out 2>&1
 
 # EMC VMAX
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vmaxperf.sh > /home/stor2rrd/stor2rrd/load_vmaxperf.out 2>&1
@@ -48,98 +48,3 @@
 
 # Dell SC series (Compellent)
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_compellentperf.sh > /home/stor2rrd/stor2rrd/load_compellentperf.out 2>&1
-
-# Huawei OceanStor
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_oceanstorperf.sh > /home/stor2rrd/stor2rrd/load_oceanstorperf.out 2>&1
-
-# EMC VPLEX
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vplexperf.sh > /home/stor2rrd/stor2rrd/load_vplexperf.out 2>&1
-
-# Infinibox agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_infiniboxperf.sh > /home/stor2rrd/stor2rrd/load_infiniboxperf.out 2>&1
-
-# Nimble storage agent
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_nimbleperf.sh  > /home/stor2rrd/stor2rrd/load_nimbleperf.out 2>&1
-
-# EMC DataDomain
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_datadomainperf.sh > /home/stor2rrd/stor2rrd/load_datadomainperf.out 2>&1
-
-# Fujitsu ETERNUS
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_eternusperf.sh > /home/stor2rrd/stor2rrd/load_eternusperf.out 2>&1
-
-# Dell EMC Isilon
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_isilonperf.sh > /home/stor2rrd/stor2rrd/load_isilonperf.out 2>&1
-
-# PureStorage FlashArray
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_pureperf.sh > /home/stor2rrd/stor2rrd/load_pureperf.out 2>&1
-
-# DataCore
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_datacoreperf.sh > /home/stor2rrd/stor2rrd/load_datacoreperf.out 2>&1
-
-# Dell EMC XtremIO
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_xtremioperf.sh > /home/stor2rrd/stor2rrd/load_xtremioperf.out 2>&1
-
-# HPE StoreOnce
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_storeonceperf.sh > /home/stor2rrd/stor2rrd/load_storeonceperf.out 2>&1
-
-# PureStorage FlashBlade
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_purebladeperf.sh > /home/stor2rrd/stor2rrd/load_purebladeperf.out 2>&1
-
-# HPE StoreVirtual, LeftHand 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_storevirtualperf.sh > /home/stor2rrd/stor2rrd/load_storevirtualperf.out 2>&1
-
-# Hitachi HNAS 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_hnasperf.sh > /home/stor2rrd/stor2rrd/load_hnasperf.out 2>&1
-
-# Oracle ZFS 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_oraclezfsperf.sh > /home/stor2rrd/stor2rrd/load_oraclezfsperf.out 2>&1
-
-# FreeNAS 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_freenasperf.sh > /home/stor2rrd/stor2rrd/load_freenasperf.out 2>&1
-
-# EMC ECS 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_ecsperf.sh > /home/stor2rrd/stor2rrd/load_ecsperf.out 2>&1
-
-# NetApp SolidFire 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_solidfireperf.sh > /home/stor2rrd/stor2rrd/load_solidfireperf.out 2>&1
-
-# FalconStor 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_falconstorperf.sh > /home/stor2rrd/stor2rrd/load_falconstorperf.out 2>&1
-
-# QNAP 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_qnapperf.sh > /home/stor2rrd/stor2rrd/load_qnapperf.out 2>&1
-
-# Hitachi HCP 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_hcpperf.sh > /home/stor2rrd/stor2rrd/load_hcpperf.out 2>&1
-
-# Ceph 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_cephperf.sh > /home/stor2rrd/stor2rrd/load_cephperf.out 2>&1
-
-# Synology 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_synologyperf.sh > /home/stor2rrd/stor2rrd/load_synologyperf.out 2>&1
-
-# RAIDIX 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_raidixperf.sh > /home/stor2rrd/stor2rrd/load_raidixperf.out 2>&1
-
-# Qumulo
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_qumuloperf.sh > /home/stor2rrd/stor2rrd/load_qumuloperf.out 2>&1
-
-# NetApp StorageGRID
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_storagegridperf.sh > /home/stor2rrd/stor2rrd/load_storagegridperf.out 2>&1
-
-# MacroSAN
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_macrosanperf.sh > /home/stor2rrd/stor2rrd/load_macrosanperf.out 2>&1
-
-
-#  STOR2RRD SAN & LAN
-######################################################
-
-# SAN (Brocade + Cisco + QLogic)
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_sanperf.sh >/home/stor2rrd/stor2rrd/logs/load_sanperf.out 2>&1
-
-# BNA agent
-0,10,20,30,40,50 * * * * /home/stor2rrd/stor2rrd/load_bnaperf.sh >/home/stor2rrd/stor2rrd/logs/load_bnaperf.out 2>&1
-
-# LAN
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_lanperf.sh >/home/stor2rrd/stor2rrd/logs/load_lanperf.out 2>&1
-
