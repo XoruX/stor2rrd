@@ -80,8 +80,8 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.30"
-ENV STOR_VER_MIN ""
+ENV STOR_VER_MAJ "7.31"
+ENV STOR_VER_MIN "-9"
 
 ENV STOR_VER "$STOR_VER_MAJ$STOR_VER_MIN"
 
