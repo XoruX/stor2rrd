@@ -55,7 +55,11 @@ RUN apk update && apk add \
     sqlite \
     perl-dbd-pg \
     perl-dbd-sqlite \
-    diffutils
+    iproute2 \
+    lsblk \
+    procps \
+    diffutils \
+    dpkg
 
 # perl-font-ttf fron testing repo (needed for PDF reports)
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
