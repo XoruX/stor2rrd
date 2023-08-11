@@ -3,7 +3,7 @@
 # VERSION               1.0
 
 FROM       alpine:latest
-MAINTAINER jirka@dutka.net
+MAINTAINER jiri.dutka@xorux.com
 
 ENV HOSTNAME XoruX
 ENV VI_IMAGE 1
@@ -65,6 +65,9 @@ RUN apk update && apk add \
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
+# temporary return back to 8.x version of openssh due to scp incompatibilities
+# RUN apk add --no-cache openssh-client-common=8.8_p1-r1 openssh-client-default=8.8_p1-r1 openssh-keygen=8.8_p1-r1 --repository=http://dl-cdn.alpinelinux.org/alpine/v3.15/main 
+
 # install perl PDF API from CPAN
 RUN cpanm -l /usr -n PDF::API2
 
@@ -84,10 +87,10 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.31"
-ENV STOR_VER_MIN "24"
+ENV STOR_VER_MAJ "7.70"
+ENV STOR_VER_MIN ""
 
-ENV STOR_VER "$STOR_VER_MAJ-$STOR_VER_MIN"
+ENV STOR_VER "${STOR_VER_MAJ}${STOR_VER_MIN}"
 
 # expose ports for SSH, HTTP, HTTPS
 EXPOSE 80

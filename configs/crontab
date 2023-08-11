@@ -119,7 +119,7 @@
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_synologyperf.sh > /home/stor2rrd/stor2rrd/load_synologyperf.out 2>&1
 
 # RAIDIX 
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_raidixperf.sh > /home/stor2rrd/stor2rrd/load_raidixperf.out 2>&1
+#0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_raidixperf.sh > /home/stor2rrd/stor2rrd/load_raidixperf.out 2>&1
 
 # Qumulo
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_qumuloperf.sh > /home/stor2rrd/stor2rrd/load_qumuloperf.out 2>&1
@@ -145,6 +145,30 @@
 # IBM Spectrum Scale
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_gpfsperf.sh > /home/stor2rrd/stor2rrd/load_gpfsperf.out 2>&1
 
+# Dell EMC PowerFlex (ScaleIO)
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_powerflexperf.sh > /home/stor2rrd/stor2rrd/load_powerflexperf.out 2>&1
+
+# Rubrik CDM
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_rubrikperf.sh > /home/stor2rrd/stor2rrd/load_rubrikperf.out 2>&1
+
+# Promise VTrak
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_vtrakperf.sh > /home/stor2rrd/stor2rrd/load_vtrakperf.out 2>&1
+
+# Infortrend EonStor
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_infortrendperf.sh > /home/stor2rrd/stor2rrd/load_infortrendperf.out 2>&1
+
+# IBM Cloud Object Storage
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_ibmcossperf.sh > /home/stor2rrd/stor2rrd/load_ibmcossperf.out 2>&1
+
+# Huawei OceanStor 9000 V5 Scale-out NAS
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_oceanstornasperf.sh > /home/stor2rrd/stor2rrd/load_oceanstornasperf.out 2>&1
+
+# Cohesity
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_cohesityperf.sh > /home/stor2rrd/stor2rrd/load_cohesityperf.out 2>&1
+
+# Huawei OceanStor Pacific
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_oceanstorpacificperf.sh > /home/stor2rrd/stor2rrd/load_oceanstorpacificperf.out 2>&1
+
 
 #  STOR2RRD SAN & LAN
 ######################################################
@@ -154,6 +178,9 @@
 
 # BNA agent
 0,10,20,30,40,50 * * * * /home/stor2rrd/stor2rrd/load_bnaperf.sh >/home/stor2rrd/stor2rrd/logs/load_bnaperf.out 2>&1
+
+# SANnav agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_sannavperf.sh > /home/stor2rrd/stor2rrd/load_sannavperf.out 2>&1
 
 # LAN
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_lanperf.sh >/home/stor2rrd/stor2rrd/logs/load_lanperf.out 2>&1

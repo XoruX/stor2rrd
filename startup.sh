@@ -36,7 +36,17 @@ EOF
        #touch /home/stor2rrd/stor2rrd/load.sh
         OLD_VER=`tail -1 /home/stor2rrd/stor2rrd/etc/version.txt | sed 's/ .*//'`
         ITYPE="update.sh"
-        if [ -f "/home/stor2rrd/stor2rrd/bin/premium.sh" ]; then
+
+	premium=0
+	if [ -f "/home/stor2rrd/stor2rrd/bin/XoruxEdition.pm" ]; then
+	  . /home/stor2rrd/stor2rrd/etc/stor2rrd.cfg
+	  strlength=`$PERL -MXoruxEdition -e 'print premium();' | wc -m`
+	    if [ $strlength -eq 6 ]; then
+  	    	premium=1
+	    fi
+	fi
+
+        if [ -f "/home/stor2rrd/stor2rrd/bin/premium.sh" ] || [ $premium -eq 1 ]; then
             echo "Premium version detected, no update will be done"
         elif [ "$OLD_VER" = "$STOR_VER" ]; then
             echo "The version is still the same, no update needed"
@@ -74,9 +84,17 @@ EOF
         su - stor2rrd -c "echo 'export XORMON=1' >> /home/stor2rrd/stor2rrd/etc/.magic"
     fi
 
+    # check if using proxy host to get data from
+    if [ $PROXY_HOST ] && [ "$PROXY_HOST" != "" ]; then
+      echo "*/10 * * * * cd /home/stor2rrd/stor2rrd; ./bin/offsite.sh $PROXY_HOST 22 stor2rrd /home/stor2rrd/stor2rrd 1>/home/stor2rrd/stor2rrd/logs/offsite.log  2>/home/stor2rrd/stor2rrd/logs/offsite-error.log" >> /var/spool/cron/crontabs/stor2rrd
+    fi
 
     # initialize stor2rrd's crontab
     crontab -u stor2rrd /var/spool/cron/crontabs/stor2rrd
+
+    mkdir -p /home/stor2rrd/hds
+    chown stor2rrd /home/stor2rrd/hds 
+    ln -s /home/stor2rrd/hds /opt/hds
 
     # clean up
     rm /firstrun
