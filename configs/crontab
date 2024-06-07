@@ -169,6 +169,9 @@
 # Huawei OceanStor Pacific
 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_oceanstorpacificperf.sh > /home/stor2rrd/stor2rrd/load_oceanstorpacificperf.out 2>&1
 
+# Dell EMC Metro node storage agent
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/stor2rrd/stor2rrd/load_metronodeperf.sh > /home/stor2rrd/stor2rrd/load_metronodeperf.out 2>&1
+
 
 #  STOR2RRD SAN & LAN
 ######################################################

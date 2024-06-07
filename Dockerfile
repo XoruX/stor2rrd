@@ -51,7 +51,7 @@ RUN apk update && apk add \
     make \
     tar \
     perl-dev \
-    perl-app-cpanminus \
+    # perl-app-cpanminus \ 
     sqlite \
     perl-dbd-pg \
     perl-dbd-sqlite \
@@ -65,11 +65,15 @@ RUN apk update && apk add \
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community perl-font-ttf
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing sblim-wbemcli
 
+# rrdtool v 1.8.0 fails on start, install older version  (fixed in rrdtool-1.8.0-r5)
+# RUN wget -q -P /tmp https://dl-cdn.alpinelinux.org/alpine/v3.17/main/x86_64/rrdtool-1.7.2-r6.apk
+# RUN apk add /tmp/rrdtool-1.7.2-r6.apk
+
 # temporary return back to 8.x version of openssh due to scp incompatibilities
 # RUN apk add --no-cache openssh-client-common=8.8_p1-r1 openssh-client-default=8.8_p1-r1 openssh-keygen=8.8_p1-r1 --repository=http://dl-cdn.alpinelinux.org/alpine/v3.15/main 
 
-# install perl PDF API from CPAN
-RUN cpanm -l /usr -n PDF::API2
+# install perl PDF API from CPAN (no more needed, bundled since v7.80-1)
+# RUN cpanm -l /usr -n PDF::API2
 
 # setup default user
 RUN addgroup -S stor2rrd 
@@ -87,8 +91,8 @@ RUN sed -i 's/^User apache/User stor2rrd/g' /etc/apache2/httpd.conf
 RUN sed -i '/mod_status.so/ s/^#*/#/' /etc/apache2/httpd.conf
 
 # add product installations
-ENV STOR_VER_MAJ "7.70"
-ENV STOR_VER_MIN ""
+ENV STOR_VER_MAJ "7.80"
+ENV STOR_VER_MIN "-1"
 
 ENV STOR_VER "${STOR_VER_MAJ}${STOR_VER_MIN}"
 
